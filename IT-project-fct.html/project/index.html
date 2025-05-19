@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>澳門紙幣智能識別系統 - 理工附中</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.18.0/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+</head>
+<body>
+    <div class="background-animation">
+        <div id="particles-js"></div>
+    </div>
+
+    <div class="app-container">
+        <div class="header">
+            <img src="https://fctweb.org/2024/images/logo/fct-website-logo.png" class="school-logo" alt="理工附中校徽">
+            <h1 class="main-title">澳門紙幣智能識別系統</h1>
+        </div>
+
+        <div class="mode-selector">
+            <button class="mode-button active" id="mode-1">驗鈔模式</button>
+            <button class="mode-button" id="mode-2">存款模式</button>
+        </div>
+
+        <div class="webcam-container" id="webcam-container">
+            <!-- Webcam will be added here by JavaScript -->
+        </div>
+
+        <div class="control-panel">
+            <button class="action-button" id="start-button">啟動驗鈔</button>
+            <button class="action-button" id="stop-button" disabled>停止檢測</button>
+            <button class="action-button" id="next-button" style="display: none;">下一張</button>
+        </div>
+
+        <div class="result-panel">
+            <div class="detection-result">
+                <h3>辨識結果</h3>
+                <div id="current-value">等待識別...</div>
+            </div>
+            <div id="label-container" class="prediction-labels"></div>
+            <div id="total-section" style="display: none;">
+                <h3>存款總額：<span id="total-amount">0 澳門元</span></h3>
+                <div id="confirmation-buttons" style="display: none; margin-top: 15px;">
+                    <button class="action-button confirm" id="confirm-button">確認存入</button>
+                    <button class="action-button reject" id="reject-button">重新識別</button>
+                    <button class="action-button finish" id="finish-button">完成存款</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="particles-config.js"></script>
+    <script src="currency-recognizer.js"></script>
+</body>
+</html>
