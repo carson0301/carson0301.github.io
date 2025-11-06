@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>學生抽籤與分數追蹤器</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="particles-canvas"></canvas>
+    
+    <div class="container">
+        <h1>學生抽籤與分數追蹤器</h1>
+        
+        <!-- 上傳區域 -->
+        <div class="upload-section">
+            <h2>上傳學生名單</h2>
+            <div class="file-input-wrapper">
+                <input type="file" id="fileInput" accept=".xlsx,.xls" />
+                <label for="fileInput" class="file-input-label">選擇 XLSX 檔案</label>
+            </div>
+            <div class="file-name" id="fileName"></div>
+        </div>
+
+        <!-- 控制區域 -->
+        <div class="control-section">
+            <div>
+                <span class="status-indicator" id="statusIndicator">狀態：下課中</span>
+            </div>
+            <button class="btn btn-start" id="btnStart">開始上課</button>
+            <button class="btn btn-end" id="btnEnd" disabled>下課</button>
+            <button class="btn btn-draw" id="btnDraw" disabled>抽籤</button>
+        </div>
+
+        <!-- 抽籤顯示區域 -->
+        <div class="draw-section">
+            <h2>抽中的學生</h2>
+            <div class="selected-student" id="selectedStudent">請先上傳名單並開始上課</div>
+        </div>
+
+        <!-- 學生列表區域 -->
+        <div class="students-section">
+            <h2>學生分數記錄</h2>
+            <div id="studentsList"></div>
+        </div>
+    </div>
+
+    <!-- 引入必要的庫 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    
+    <!-- 引入自定義 JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

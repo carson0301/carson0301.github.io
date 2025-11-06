@@ -1,0 +1,335 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Microsoft JhengHei', Arial, sans-serif;
+    background: #ffffff;
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* 粒子背景容器 */
+#particles-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* 主內容容器 */
+.container {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 標題 */
+h1 {
+    text-align: center;
+    color: #333;
+    margin: 30px 0;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+/* 上傳區域 */
+.upload-section {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 30px;
+    margin: 20px 0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.file-input-wrapper {
+    position: relative;
+    display: inline-block;
+    margin: 20px 0;
+}
+
+.file-input-wrapper input[type=file] {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.file-input-label {
+    display: inline-block;
+    padding: 15px 30px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.file-input-label:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+.file-name {
+    margin-top: 15px;
+    color: #666;
+    font-size: 1em;
+}
+
+/* 控制按鈕區域 */
+.control-section {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 30px;
+    margin: 20px 0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.btn {
+    padding: 15px 40px;
+    margin: 10px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    font-weight: bold;
+}
+
+.btn-start {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    color: white;
+}
+
+.btn-start:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(17, 153, 142, 0.6);
+}
+
+.btn-end {
+    background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
+    color: white;
+}
+
+.btn-end:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(235, 51, 73, 0.6);
+}
+
+.btn-draw {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+    font-size: 1.5em;
+    padding: 20px 60px;
+}
+
+.btn-draw:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(240, 147, 251, 0.6);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* 抽籤顯示區域 */
+.draw-section {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 40px;
+    margin: 20px 0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+    min-height: 200px;
+}
+
+.selected-student {
+    font-size: 3em;
+    color: #333;
+    margin: 20px 0;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.selected-student.rolling {
+    animation: roll 0.1s linear infinite;
+}
+
+.selected-student.reveal {
+    animation: reveal 0.8s ease-out;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+@keyframes roll {
+    0% { 
+        transform: translateY(0) rotateX(0deg) scale(0.9); 
+        opacity: 0.6; 
+    }
+    50% { 
+        transform: translateY(-15px) rotateX(180deg) scale(1.05); 
+        opacity: 0.9; 
+    }
+    100% { 
+        transform: translateY(0) rotateX(360deg) scale(0.9); 
+        opacity: 0.6; 
+    }
+}
+
+@keyframes reveal {
+    0% { 
+        transform: scale(0.5) rotateY(180deg); 
+        opacity: 0; 
+    }
+    50% { 
+        transform: scale(1.2) rotateY(0deg); 
+        opacity: 0.8; 
+    }
+    100% { 
+        transform: scale(1) rotateY(0deg); 
+        opacity: 1; 
+    }
+}
+
+/* 抽籤動畫遮罩 */
+.draw-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    border-radius: 15px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+.draw-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.draw-section {
+    position: relative;
+}
+
+/* 學生列表區域 */
+.students-section {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 30px;
+    margin: 20px 0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.students-section h2 {
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.student-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    margin: 10px 0;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border-left: 4px solid #667eea;
+}
+
+.student-name {
+    font-size: 1.2em;
+    color: #333;
+    font-weight: bold;
+}
+
+.student-score {
+    font-size: 1.5em;
+    color: #667eea;
+    font-weight: bold;
+    margin: 0 20px;
+    min-width: 60px;
+    text-align: center;
+}
+
+.score-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-score {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: bold;
+}
+
+.btn-plus {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    color: white;
+}
+
+.btn-minus {
+    background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
+    color: white;
+}
+
+.btn-score:hover {
+    transform: scale(1.1);
+}
+
+.status-indicator {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.status-class {
+    background: #38ef7d;
+    color: white;
+}
+
+.status-break {
+    background: #f45c43;
+    color: white;
+}
+
+.empty-message {
+    text-align: center;
+    color: #999;
+    padding: 40px;
+    font-size: 1.2em;
+}
+
