@@ -1,0 +1,78 @@
+ <!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>衣物污漬清潔指南</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <header class="app-header">
+      <h1>衣物污漬清潔指南</h1>
+    </header>
+    <main class="app-main">
+      <section id="materials-section" class="content-section active">
+        <h2 class="section-title">物料清洗指南</h2>
+        <div id="materials-list" class="grid-list"></div>
+      </section>
+      <section id="stains-section" class="content-section">
+        <h2 class="section-title">常見污漬處理</h2>
+        <div id="stains-list" class="grid-list"></div>
+      </section>
+      <section id="ai-section" class="content-section">
+        <h2 class="section-title">AI 交互區</h2>
+        <div class="ai-actions">
+          <button id="btn-photo" class="btn-big" aria-label="拍污漬">📷 拍污漬</button>
+          <button id="btn-voice" class="btn-big hold-to-talk" aria-label="按住講嘢">🎤 按住講嘢</button>
+        </div>
+        <p class="hint">📷 拍張污漬相，AI話你知點洗 · 🎤 按住講嘢，比如「羊毛衫有紅酒漬點算」</p>
+        <div class="query-tool">
+          <h3 class="sub-title">交叉查詢工具</h3>
+          <div class="query-row">
+            <select id="material-select" class="big-select" aria-label="選擇物料">
+              <option value="">選擇衣物/家紡物料（如：棉、羊毛）</option>
+            </select>
+            <select id="stain-select" class="big-select" aria-label="選擇污漬">
+              <option value="">選擇污漬類型（如：油漬、汗漬）</option>
+            </select>
+          </div>
+          <button id="btn-query" class="btn-primary" aria-label="查詢清洗方法">🔍 查詢清洗方法</button>
+          <div id="query-result" class="query-result" hidden></div>
+        </div>
+      </section>
+    </main>
+    <section id="detail-section" class="detail-section" hidden>
+      <div class="detail-header">
+        <button id="btn-back" class="btn-back" aria-label="返回">← 返回</button>
+        <h3 id="detail-title" class="detail-title"></h3>
+      </div>
+      <div id="detail-content" class="detail-content"></div>
+    </section>
+    <div id="image-viewer" class="image-viewer" hidden>
+      <div class="image-stage">
+        <img id="viewer-img" alt="預覽" />
+        <div id="viewer-placeholder" class="circle circle-80 placeholder-text">點擊查看</div>
+      </div>
+      <button id="viewer-close" class="viewer-close" aria-label="關閉">✕</button>
+    </div>
+    <p class="hint">以上照片僅限教學用途，並無商業價值</p>
+    <nav class="tabbar">
+      <button class="tab-item active" data-target="materials-section">
+        <span class="tab-icon">👕</span>
+        <span class="tab-text">物料</span>
+      </button>
+      <button class="tab-item" data-target="stains-section">
+        <span class="tab-icon">🧽</span>
+        <span class="tab-text">污漬</span>
+      </button>
+      <button class="tab-item" data-target="ai-section">
+        <span class="tab-icon">🤖</span>
+        <span class="tab-text">AI</span>
+      </button>
+    </nav>
+  </div>
+  <input id="photo-input" type="file" accept="image/*" capture="environment" hidden>
+  <script src="scripts.js"></script>
+</body>
+</html>
