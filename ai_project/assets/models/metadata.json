@@ -1,0 +1,16 @@
+{
+  "tfjsVersion": "4.22.0",
+  "tmVersion": "2.4.4",
+  "packageVersion": "0.8.4",
+  "packageName": "@teachablemachine/image",
+  "timeStamp": "2024-01-01T00:00:00.000Z",
+  "userMetadata": {},
+  "modelName": "簡化舌苔識別模型",
+  "labels": [
+    "正常舌苔",
+    "寒象舌苔",
+    "熱象舌苔",
+    "陰虛舌苔",
+    "血瘀舌苔"
+  ]
+}
